@@ -2,10 +2,19 @@ import {expect} from "#framework/assertions"
 import {display} from "#framework/layouts"
 
 import {Dialog} from "@bokehjs/models/ui/dialog"
+import {Node} from "@bokehjs/models/coordinates/node"
 import {bounding_box, MouseButton} from "@bokehjs/core/dom"
 import * as dialogs from "@bokehjs/styles/dialogs.css"
 
 describe("models/ui/dialog module", () => {
+  describe("Dialog", () => {
+    it("should only allow nodes as limits", () => {
+      const node = Node.create({target: "parent", symbol: "left"})
+      expect(Dialog.create({left_limit: node}).left_limit).to.be.identical(node)
+      expect(() => Dialog.create({left_limit: 100 as any})).to.throw()
+    })
+  })
+
   describe("DialogView", () => {
     function pointer(type: string, x: number, y: number): PointerEvent {
       return new PointerEvent(type, {
