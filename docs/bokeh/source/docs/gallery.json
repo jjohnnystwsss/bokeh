@@ -359,6 +359,11 @@
       "alt": "Blue and orange clusters in Zachary’s karate club graph, with cross-club edges accented in pink."
     },
     {
+      "name": "record_network_updates.py",
+      "title": "Update a record-backed graph",
+      "alt": "Before and after adding a ridge relay station. Two orange links replace the direct link to Dune."
+    },
+    {
       "name": "airports_graph.py",
       "title": "Routes from one airport",
       "alt": "A map of the contiguous United States with routes fanning out from the selected airport in Albuquerque."
