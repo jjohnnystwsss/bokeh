@@ -333,15 +333,9 @@ class PropertyDescriptor[T]:
         class attribute access, we return ourself.
 
         Args:
-            obj:
-                The instance to set a new property value on (for instance
+            obj: The instance to set a new property value on (for instance
                 attribute access), or None (for class attribute access)
-
-            owner:
-                The new value to set the property to
-
-        Returns:
-            None
+            owner: The new value to set the property to
 
         Examples:
 
@@ -381,14 +375,9 @@ class PropertyDescriptor[T]:
             explicitly invoking ``__set__``. See below for more information.
 
         Args:
-            obj:
-                The instance to set a new property value on
-
-            value:
-                The new value to set the property to
-
-            setter:
-                This is used to prevent "boomerang" updates to Bokeh apps.
+            obj: The instance to set a new property value on
+            value: The new value to set the property to
+            setter: This is used to prevent "boomerang" updates to Bokeh apps.
 
                 In the context of a Bokeh server application, incoming updates
                 to properties will be annotated with the session that is
@@ -396,9 +385,6 @@ class PropertyDescriptor[T]:
                 subsequent change notifications that the update triggers.
                 The session can compare the event setter to itself, and
                 suppress any updates that originate from itself.
-
-        Returns:
-            None
 
         """
         if not hasattr(obj, '_property_values'):
@@ -454,12 +440,7 @@ class PropertyDescriptor[T]:
 
         Args:
             cls: The class to get the default value for.
-
             no_eval: Whether to evaluate callables for defaults
-
-        Returns:
-            object
-
 
         """
         return self.property.themed_default(cls, self.name, None, no_eval=no_eval)
@@ -469,9 +450,6 @@ class PropertyDescriptor[T]:
 
         Args:
             obj: The instance to get the default value for.
-
-        Returns:
-            object
 
         """
         return self.property.themed_default(obj.__class__, self.name, obj.themed_values())
@@ -486,9 +464,6 @@ class PropertyDescriptor[T]:
         Args:
             obj: the object to get the serialized attribute for
 
-        Returns:
-            Any
-
         """
         return self.__get__(obj, obj.__class__)
 
@@ -497,11 +472,8 @@ class PropertyDescriptor[T]:
 
         Args:
             obj: instance to set the property value on
-
             value: value to set to the attribute to
-
-            setter:
-                This is used to prevent "boomerang" updates to Bokeh apps.
+            setter: This is used to prevent "boomerang" updates to Bokeh apps.
 
                 In the context of a Bokeh server application, incoming updates
                 to properties will be annotated with the session that is
@@ -509,9 +481,6 @@ class PropertyDescriptor[T]:
                 subsequent change notifications that the update triggers.
                 The session can compare the event setter to itself, and
                 suppress any updates that originate from itself.
-
-        Returns:
-            None
 
         """
         value = self.property.prepare_value(obj, self.name, value)
@@ -524,14 +493,9 @@ class PropertyDescriptor[T]:
 
         Args:
             obj: The object the property is being set on.
-
-            old:
-                The previous value of the property, or
+            old: The previous value of the property, or
                 ``OldValueUnavailable`` when an incremental update didn't
                 retain it.
-
-        Returns:
-            None
 
         """
         new_value = self._get(obj)
@@ -613,12 +577,8 @@ class PropertyDescriptor[T]:
         Args:
             obj: the instance to get a value of this property for
 
-        Returns:
-            object
-
         Raises:
-            RuntimeError
-                If the |HasProps| instance has not yet been initialized, or if
+            RuntimeError: If the |HasProps| instance has not yet been initialized, or if
                 this descriptor is on a class that is not a |HasProps|.
 
         """
@@ -683,24 +643,15 @@ class PropertyDescriptor[T]:
         been explicitly set, etc.
 
         Args:
-            obj:
-                The object the property is being set on.
-
-            old:
-                The previous value of the property to compare
-
-            value:
-                The new value of the property
-
-            hint:
-                An optional update event hint, e.g. ``ColumnStreamedEvent``
+            obj: The object the property is being set on.
+            old: The previous value of the property to compare
+            value: The new value of the property
+            hint: An optional update event hint, e.g. ``ColumnStreamedEvent``
 
                 Update event hints are usually used at times when better
                 update performance can be obtained by special-casing in
                 some way (e.g. streaming or patching column data sources)
-
-            setter:
-                This is used to prevent "boomerang" updates to Bokeh apps.
+            setter: This is used to prevent "boomerang" updates to Bokeh apps.
 
                 In the context of a Bokeh server application, incoming updates
                 to properties will be annotated with the session that is
@@ -708,9 +659,6 @@ class PropertyDescriptor[T]:
                 subsequent change notifications that the update triggers.
                 The session can compare the event setter to itself, and
                 suppress any updates that originate from itself.
-
-        Returns:
-            None
 
         """
         if value is Undefined:
@@ -744,25 +692,17 @@ class PropertyDescriptor[T]:
         and we detect it with our ``PropertyContainer`` wrappers.
 
         Args:
-            obj:
-                The object who's container value was mutated
-
-            old:
-                The "old" value of the container
+            obj: The object who's container value was mutated
+            old: The "old" value of the container
 
                 This is normally a copy. Incremental updates that don't
                 retain the previous value use ``OldValueUnavailable``. The
                 new value is already set unless validation changes it.
-
-            hint:
-                An optional update event hint, e.g. ``ColumnStreamedEvent``
+            hint: An optional update event hint, e.g. ``ColumnStreamedEvent``
 
                 Update event hints are usually used at times when better
                 update performance can be obtained by special-casing in
                 some way (e.g. streaming or patching column data sources)
-
-        Returns:
-            None
 
         """
         value = self.__get__(obj, obj.__class__)
@@ -778,26 +718,17 @@ class PropertyDescriptor[T]:
         """ Unconditionally send a change event notification for the property.
 
         Args:
-            obj:
-                The object the property is being set on.
-
-            old:
-                The previous value of the property, or
+            obj: The object the property is being set on.
+            old: The previous value of the property, or
                 ``OldValueUnavailable`` when an incremental update didn't
                 retain it.
-
-            value:
-                The new value of the property
-
-            hint:
-                An optional update event hint, e.g. ``ColumnStreamedEvent``
+            value: The new value of the property
+            hint: An optional update event hint, e.g. ``ColumnStreamedEvent``
 
                 Update event hints are usually used at times when better
                 update performance can be obtained by special-casing in
                 some way (e.g. streaming or patching column data sources)
-
-            setter:
-                This is used to prevent "boomerang" updates to Bokeh apps.
+            setter: This is used to prevent "boomerang" updates to Bokeh apps.
 
                 In the context of a Bokeh server application, incoming updates
                 to properties will be annotated with the session that is
@@ -805,10 +736,6 @@ class PropertyDescriptor[T]:
                 subsequent change notifications that the update triggers.
                 The session can compare the event setter to itself, and
                 suppress any updates that originate from itself.
-
-
-        Returns:
-            None
 
         """
         if hasattr(obj, 'trigger'):
@@ -840,14 +767,9 @@ class ColumnDataPropertyDescriptor(PropertyDescriptor[Any]):
             explicitly invoking ``__set__``. See below for more information.
 
         Args:
-            obj:
-                The instance to set a new property value on
-
-            value:
-                The new value to set the property to
-
-            setter:
-                This is used to prevent "boomerang" updates to Bokeh apps.
+            obj: The instance to set a new property value on
+            value: The new value to set the property to
+            setter: This is used to prevent "boomerang" updates to Bokeh apps.
 
                 In the context of a Bokeh server application, incoming updates
                 to properties will be annotated with the session that is
@@ -855,9 +777,6 @@ class ColumnDataPropertyDescriptor(PropertyDescriptor[Any]):
                 subsequent change notifications that the update triggers.
                 The session can compare the event setter to itself, and
                 suppress any updates that originate from itself.
-
-        Returns:
-            None
 
         """
         if not hasattr(obj, '_property_values'):
@@ -904,11 +823,8 @@ class DataSpecPropertyDescriptor(PropertyDescriptor[Any]):
 
         Args:
             obj: object to set value to
-
             value: value to set
-
-            setter:
-                This is used to prevent "boomerang" updates to Bokeh apps.
+            setter: This is used to prevent "boomerang" updates to Bokeh apps.
 
                 In the context of a Bokeh server application, incoming updates
                 to properties will be annotated with the session that is
@@ -916,9 +832,6 @@ class DataSpecPropertyDescriptor(PropertyDescriptor[Any]):
                 subsequent change notifications that the update triggers.
                 The session can compare the event setter to itself, and
                 suppress any updates that originate from itself.
-
-        Returns:
-            None
 
         """
         value = self._extract_units(obj, value)

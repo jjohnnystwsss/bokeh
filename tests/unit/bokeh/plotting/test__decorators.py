@@ -92,7 +92,7 @@ def test_glyph_docstring_parameter_indentation(doc: str) -> None:
 
     assert """\
 Keyword args:
-    value (str):
+    value:
         First paragraph.
 
         Second paragraph.

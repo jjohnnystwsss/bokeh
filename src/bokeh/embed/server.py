@@ -55,7 +55,6 @@ def server_document(url: str = "default", relative_urls: bool = False, resources
             A URL to a Bokeh application on a Bokeh server.
 
             If ``"default"`` the default URL ``{DEFAULT_SERVER_HTTP_URL}`` will be used.
-
         relative_urls:
             Whether to use relative URLs for resources.
 
@@ -66,7 +65,6 @@ def server_document(url: str = "default", relative_urls: bool = False, resources
             ``True`` in situations where only relative URLs will work. E.g.
             when running the Bokeh behind reverse-proxies under certain
             configurations.
-
         resources: A string specifying what resources need to be loaded
             along with the document.
 
@@ -77,17 +75,14 @@ def server_document(url: str = "default", relative_urls: bool = False, resources
             (e.g. from a caching server). Be careful, however, that the resource
             files you'll load separately are of the same version as that of the
             server's, otherwise the rendering may not work correctly.
-
         arguments:
             A dictionary of key/values to be passed as HTTP request arguments
             to Bokeh application code. Values are converted to strings.
-
         headers:
             A dictionary of key/values to be passed as HTTP Headers
             to Bokeh application code.
 
             Mutually exclusive with ``with_credentials``
-
         with_credentials:
             Whether cookies should be passed to Bokeh application code.
 
@@ -134,15 +129,12 @@ def server_session(model: Model | None = None, session_id: ID | None = None, url
             The object to render from the session, or None.
 
             If None, the entire document will be rendered.
-
         session_id:
             A server session ID
-
         url:
             A URL to a Bokeh application on a Bokeh server
 
             If ``"default"`` the default URL ``{DEFAULT_SERVER_HTTP_URL}`` will be used.
-
         relative_urls:
             Whether to use relative URLs for resources.
 
@@ -153,7 +145,6 @@ def server_session(model: Model | None = None, session_id: ID | None = None, url
             ``True`` in situations where only relative URLs will work. E.g.
             when running the Bokeh behind reverse-proxies under certain
             configurations.
-
         resources: A string specifying what resources need to be loaded
             along with the document.
 
@@ -164,13 +155,11 @@ def server_session(model: Model | None = None, session_id: ID | None = None, url
             (e.g. from a caching server). Be careful, however, that the resource
             files you'll load separately are of the same version as that of the
             server's, otherwise the rendering may not work correctly.
-
         headers:
             A dictionary of key/values to be passed as HTTP Headers
             to Bokeh application code
 
             Mutually exclusive with ``with_credentials``
-
         with_credentials:
             Whether cookies should be passed to Bokeh application code
 

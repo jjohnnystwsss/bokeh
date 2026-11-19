@@ -276,9 +276,6 @@ class ColumnDataSource(ColumnarDataSource):
         Args:
             df: data to convert
 
-        Returns:
-            dict[str, np.array]
-
         '''
         import narwhals.stable.v1 as nw
 
@@ -336,9 +333,6 @@ class ColumnDataSource(ColumnarDataSource):
         Args:
             group: data to convert
 
-        Returns:
-            dict[str, np.array]
-
         '''
         return ColumnDataSource._data_from_df(group.describe())
 
@@ -358,9 +352,6 @@ class ColumnDataSource(ColumnarDataSource):
 
         Args:
             df: the ``DataFrame`` to find an index name for
-
-        Returns:
-            str
 
         '''
         if isinstance(df.index.name, str):
@@ -382,9 +373,6 @@ class ColumnDataSource(ColumnarDataSource):
         Args:
             data: data to convert
 
-        Returns:
-            dict[str, np.array]
-
         '''
         return cls._data_from_df(data)
 
@@ -399,17 +387,11 @@ class ColumnDataSource(ColumnarDataSource):
         Args:
             data: data to convert
 
-        Returns:
-            dict[str, np.array]
-
         '''
         return cls._data_from_df(data.describe())
 
     def to_df(self) -> pd.DataFrame:
         ''' Convert this data source to pandas ``DataFrame``.
-
-        Returns:
-            DataFrame
 
         '''
         import pandas as pd
@@ -424,7 +406,7 @@ class ColumnDataSource(ColumnarDataSource):
                 If not supplied, generate a name of the form "Series ####"
 
         Returns:
-            str:  the column name used
+            the column name used
 
         '''
         if name is None:
@@ -440,9 +422,6 @@ class ColumnDataSource(ColumnarDataSource):
 
         Args:
             name: name of the column to remove
-
-        Returns:
-            None
 
         .. note::
             If the column name does not exist, a warning is issued.
@@ -473,11 +452,8 @@ class ColumnDataSource(ColumnarDataSource):
                 from the start of the column begins to be discarded. If None,
                 then columns will continue to grow unbounded
 
-        Returns:
-            None
-
         Raises:
-            ValueError
+            ValueError:
 
         Example:
 
@@ -533,11 +509,8 @@ class ColumnDataSource(ColumnarDataSource):
                 The session can compare the event setter to itself, and
                 suppress any updates that originate from itself.
 
-        Returns:
-            None
-
         Raises:
-            ValueError
+            ValueError:
 
         Example:
 
@@ -687,11 +660,8 @@ class ColumnDataSource(ColumnarDataSource):
             patches: lists of patches for each column
             setter: This is used to prevent "boomerang" updates to Bokeh apps.
 
-        Returns:
-            None
-
         Raises:
-            ValueError
+            ValueError:
 
         Example:
 

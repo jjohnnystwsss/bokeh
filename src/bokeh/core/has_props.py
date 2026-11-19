@@ -394,9 +394,6 @@ class HasProps(Serializable):
             name: the name of the attribute to set on this object
             value: the value to set
 
-        Returns:
-            None
-
         '''
         if name.startswith("_"):
             return super().__setattr__(name, value)
@@ -420,9 +417,6 @@ class HasProps(Serializable):
 
         Args:
             name: the name of the attribute to set on this object
-
-        Returns:
-            Any
 
         '''
         if name.startswith("_"):
@@ -528,9 +522,7 @@ class HasProps(Serializable):
 
         Args:
             name: name of the attribute to set
-
             value: value to set to the attribute to
-
             setter:
                 This is used to prevent "boomerang" updates to Bokeh apps.
 
@@ -540,9 +532,6 @@ class HasProps(Serializable):
                 subsequent change notifications that the update triggers.
                 The session can compare the event setter to itself, and
                 suppress any updates that originate from itself.
-
-        Returns:
-            None
 
         '''
         if name in self.properties():
@@ -554,9 +543,6 @@ class HasProps(Serializable):
 
     def update(self, **kwargs: Any) -> None:
         ''' Updates the object's properties from the given keyword arguments.
-
-        Returns:
-            None
 
         Examples:
 
@@ -597,7 +583,7 @@ class HasProps(Serializable):
             raises: whether to raise or return None if missing
 
         Returns:
-            PropertyDescriptor : descriptor for property named ``name``
+            descriptor for property named ``name``
 
         '''
         attr = getattr(cls, name, None)
@@ -669,7 +655,7 @@ class HasProps(Serializable):
                 since the object was created.
 
         Returns:
-           dict: mapping from property names to their values
+           mapping from property names to their values
 
         '''
         return self.query_properties_with_values(lambda prop: prop.serialized,
@@ -691,20 +677,14 @@ class HasProps(Serializable):
         predicate.
 
         Args:
-            query:
-                A callable that accepts property descriptors and returns True
-                or False
-
-            include_defaults:
-                Whether to include properties that have not been explicitly
+            query: A callable that accepts property descriptors and returns True or False
+            include_defaults: Whether to include properties that have not been explicitly
                 set by a user
-
-            include_undefined:
-                Whether to include properties that are undefined
+            include_undefined: Whether to include properties that are undefined
                 since the object was created.
 
         Returns:
-            dict: mapping of property names and values for matching properties
+            mapping of property names and values for matching properties
 
         '''
         result: dict[str, Any] = {}
@@ -736,9 +716,6 @@ class HasProps(Serializable):
         Results are returned as a dict from property name to value, or
         ``None`` if no theme overrides any values for this instance.
 
-        Returns:
-            dict or None
-
         '''
         return getattr(self, '__themed_values__', None)
 
@@ -752,9 +729,6 @@ class HasProps(Serializable):
 
         Args:
             property_values: theme values to use in place of defaults
-
-        Returns:
-            None
 
         '''
         old_dict = self.themed_values()
@@ -797,9 +771,6 @@ class HasProps(Serializable):
 
     def unapply_theme(self) -> None:
         ''' Remove any themed values and restore defaults.
-
-        Returns:
-            None
 
         '''
         self.apply_theme(property_values={})

@@ -80,30 +80,23 @@ def export_png(obj: UIElement | Document, *, filename: PathLike | None = None, w
 
     Args:
         obj: a Layout (e.g. Row/Column), Plot or Widget  or Document to export.
-
         filename: filename to save document under.
             If None, infer from the filename.
-
         width: the desired width of the exported layout obj only if
             it's a Plot instance. Otherwise the width kwarg is ignored.
-
         height: the desired height of the exported layout obj only if
             it's a Plot instance. Otherwise the height kwarg is ignored.
-
         scale_factor: A factor to scale the output PNG by,
             providing a higher resolution while maintaining element relative
             scales.
-
         webdriver:
             A browser instance to use for export. Accepts a Selenium
             ``WebDriver`` or a Playwright ``Browser`` / ``BrowserContext``
             (e.g. from ``playwright.chromium.launch()`` or
             ``launch_persistent_context()``). The backend is auto-detected
             from the type of object passed. Selenium export is deprecated.
-
         timeout: the maximum amount of time (in seconds) to wait for
             Bokeh to initialize (Added in 1.1.1).
-
         backend:
             Which browser backend to use for export. If None, uses the
             ``BOKEH_EXPORT_BACKEND`` setting.
@@ -111,7 +104,7 @@ def export_png(obj: UIElement | Document, *, filename: PathLike | None = None, w
             Selenium backend is deprecated.
 
     Returns:
-        str : the filename where the static file is saved.
+        the filename where the static file is saved.
 
     If you would like to access an Image object directly, rather than save a
     file to disk, use the lower-level :func:`~bokeh.io.export.get_screenshot_as_png`
@@ -170,7 +163,7 @@ def export_svg(obj: UIElement | Document, *, filename: PathLike | None = None, w
             Selenium backend is deprecated.
 
     Returns:
-        list[str] : the list of filenames where the SVGs files are saved.
+        the list of filenames where the SVGs files are saved.
 
     .. warning::
         Responsive sizing_modes may generate layouts with unexpected size and
@@ -215,7 +208,7 @@ def export_svgs(obj: UIElement | Document, *, filename: str | None = None, width
             Selenium backend is deprecated.
 
     Returns:
-        filenames (list(str)) : the list of filenames where the SVGs files are saved.
+        the list of filenames where the SVGs files are saved.
 
     .. warning::
         Responsive sizing_modes may generate layouts with unexpected size and
@@ -339,7 +332,7 @@ def get_screenshot_as_png(obj: UIElement | Document, *, driver: DriverLike | Non
             is deprecated.
 
     Returns:
-        PIL.Image.Image : a pillow image loaded from PNG.
+        a pillow image loaded from PNG.
 
     .. warning::
         Responsive sizing_modes may generate layouts with unexpected size and

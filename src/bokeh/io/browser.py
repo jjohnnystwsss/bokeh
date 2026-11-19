@@ -407,8 +407,8 @@ def _playwright_render(
             ``playwright_control`` instance is used.
 
     Returns:
-        (result, width, height, dpr): where result is the script return value
-        or PNG bytes if script is empty.
+        where result is the script return value or PNG bytes if script is empty.
+
     '''
     def _do_export(user_driver: Browser | BrowserContext) -> tuple[Any, int, int, int]:
         page = user_driver.new_page()

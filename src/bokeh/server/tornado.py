@@ -719,9 +719,6 @@ class BokehTornado(TornadoApplication):
         Args:
             wait: whether to wait for orderly cleanup.
 
-        Returns:
-            None
-
         '''
 
         if not wait:
@@ -775,12 +772,9 @@ class BokehTornado(TornadoApplication):
             app_path:
                 The configured application path for the application to return
                 a session for.
-
             session_id:
                 The session ID of the session to retrieve.
 
-        Returns:
-            ServerSession
 
         '''
         if app_path not in self._applications:
@@ -794,9 +788,6 @@ class BokehTornado(TornadoApplication):
             app_path:
                 The configured application path for the application to return
                 sessions for.
-
-        Returns:
-            list[ServerSession]
 
         '''
         if app_path not in self._applications:
